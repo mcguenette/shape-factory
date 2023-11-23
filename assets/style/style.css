@@ -2,7 +2,7 @@
 @import url(./reset.css);
 
 :root {
-    --dark-color: #202124;
+    --primary-dark: #202124;
     --secondary-dark-color: #ffffff0d;
     --light-color: #fafafa;
     --primary-blue: #09f;
@@ -13,7 +13,7 @@
 }
 
 body {
-    background-color: var(--dark-color);
+    background-color: var(--primary-dark);
     color: var(--light-color);
     min-height: 100%;
     font-family: 'Poppins', sans-serif;
@@ -74,5 +74,9 @@ input#create-btn, select {
 
 select {
     background-color: var(--secondary-dark-color);
+    color: var(--light-color);
+}
+select option {
+    background-color: var(--primary-dark);
     color: var(--light-color);
 }

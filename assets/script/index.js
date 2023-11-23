@@ -1,56 +1,68 @@
 import { Shape } from './shape.js';
-import { onEvent, select, selectAll } from './utils.js';
+import { onEvent, select } from './utils.js';
 
 const shapeContainer = select('#shape-container');
 const shapeSelect = select('#shape-select');
 const colorSelect = select('#color-select');
-const button = select('#create-btn');
+const createButton = select('#create-btn');
 const validationParagraph = select('#validation');
 
 const shapesArray = [];
 const maxShapes = 20;
 
-function createShape() {
-    const selectedShape = shapeSelect.value;
-    const selectedColor = colorSelect.value;
+let shapeCounter = 0;
 
-    // Validation
-    if (selectedShape === 'Select a shape' || selectedColor === 'Select a colour') {
+function validateSelection(shape, color) {
+    if (shape === 'Select a shape' || color === 'Select a colour') {
         validationParagraph.textContent = 'Please select a shape and a color.';
-        return;
+        return false;
     }
 
     if (shapesArray.length >= maxShapes) {
         validationParagraph.textContent = 'Maximum number of shapes reached (20).';
-        return;
+        return false;
     }
 
-    validationParagraph.textContent = ''; // Clear validation message
-
-    const newShape = new Shape(selectedShape, selectedColor);
-    shapesArray.push(newShape);
-
-    const shapeDiv = document.createElement('div');
-    shapeDiv.classList.add('shape');
-    shapeDiv.style.backgroundColor = selectedColor;
-
-    if (selectedShape === 'circle') {
-        shapeDiv.style.borderRadius = '50%';
-    }
-
-    onEvent('click', shapeDiv, () => {
-        validationParagraph.textContent = newShape.getInfo();
-    });
-
-    shapeContainer.appendChild(shapeDiv);
+    validationParagraph.textContent = '';
+    return true;
 }
 
-// Add event listener to color-select
-onEvent('change', colorSelect, () => {
+function createShapeElement(shape, color) {
+    const newShape = new Shape(shape, color);
+    shapesArray.push(newShape);
+
+    const shapeElement = document.createElement('div');
+    shapeElement.classList.add('shape');
+    shapeElement.style.backgroundColor = color;
+
+    if (shape === 'circle') {
+        shapeElement.style.borderRadius = '50%';
+    }
+
+    shapeCounter++; // Increment the shape counter
+
+    onEvent('click', shapeElement, () => {
+        validationParagraph.textContent = `Unit ${shapeCounter}: ${color} ${shape}`;
+    });
+
+    return shapeElement;
+}
+
+function handleCreateClick() {
+    const selectedShape = shapeSelect.value;
     const selectedColor = colorSelect.value;
 
-    // Update the CSS custom property for the selected color
-    document.documentElement.style.setProperty('--selected-color', selectedColor);
-});
+    if (validateSelection(selectedShape, selectedColor)) {
+        const shapeElement = createShapeElement(selectedShape, selectedColor);
+        shapeContainer.appendChild(shapeElement);
+    }
+}
 
-onEvent('click', button, createShape);
+function handleColorChange() {
+    const selectedColor = colorSelect.value;
+    document.documentElement.style.setProperty('--selected-color', selectedColor);
+}
+
+onEvent('click', createButton, handleCreateClick);
+
+onEvent('change', colorSelect, handleColorChange);
