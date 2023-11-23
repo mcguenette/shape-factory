@@ -22,25 +22,27 @@
 <body>       
     <main>
         <div class="container">
-            <div id="shape-container" class="shape-container"></div>
-            <select id="shape-select">
-                <option value="Select a shape"></option>
-                <option value="circle">Circle</option>
-                <option value="square">Square</option>
-            </select>
-            <select id="color-select">
-                <option value="Select a colour"></option>
-                <option value="blue">Blue</option>
-                <option value="pink">Pink</option>
-                <option value="orange">Orange</option>
-                <option value="green">Green</option>
-            </select>
-            <input type="button" id="create-btn" value="Create"/>
-            <section>
+            <section class="select-container">
+                <select id="shape-select">
+                    <option selected disabled>Select a shape</option>
+                    <option value="circle">Circle</option>
+                    <option value="square">Square</option>
+                </select>
+                <select id="color-select">
+                    <option selected disabled>Select a color</option>
+                    <option value="#09f">Blue</option>
+                    <option value="#f09">Pink</option>
+                    <option value="#f90">Orange</option>
+                    <option value="#9f0">Green</option>
+                    <option value="#90f">Purple</option>
+                </select>
+                <input type="button" id="create-btn" value="Create" class="primary-button"/>
+            </section>
+            <section class="validation-container">
+                <div id="shape-container" class="shape-container"></div>
                 <p id="validation"></p>
             </section>
         </div>
-    </main> 
-
+    </main>
 </body>
 </html>

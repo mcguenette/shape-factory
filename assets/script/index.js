@@ -1,8 +1,5 @@
-
-'use strict';
 import { Shape } from './shape.js';
 import { onEvent, select, selectAll } from './utils.js';
-
 
 const shapeContainer = select('#shape-container');
 const shapeSelect = select('#shape-select');
@@ -37,7 +34,7 @@ function createShape() {
     shapeDiv.classList.add('shape');
     shapeDiv.style.backgroundColor = selectedColor;
     shapeDiv.textContent = selectedShape.charAt(0).toUpperCase();
-    
+
     if (selectedShape === 'circle') {
         shapeDiv.style.borderRadius = '50%';
     }
@@ -45,9 +42,16 @@ function createShape() {
     onEvent('click', shapeDiv, () => {
         validationParagraph.textContent = newShape.getInfo();
     });
-    
 
     shapeContainer.appendChild(shapeDiv);
 }
+
+// Add event listener to color-select
+onEvent('change', colorSelect, () => {
+    const selectedColor = colorSelect.value;
+
+    // Update the CSS custom property for the selected color
+    document.documentElement.style.setProperty('--selected-color', selectedColor);
+});
 
 onEvent('click', button, createShape);
