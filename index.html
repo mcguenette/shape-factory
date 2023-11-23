@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="author" content="MC Guenette">
+    <meta name="description"
+        content="MC Guenette: Software Developer Portfolio">
+    <meta name="keywords"
+        content="web developer, web, front-end, css, javascript, html, react">
+    <link rel="shortcut icon"
+    href="https://res.cloudinary.com/dzdgpwtox/image/upload/v1656263678/designer-tool-uploads/bucket_9200/1656263676160.png"
+    type="image/x-icon">
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@500;600&family=Poppins:wght@400;800&display=swap" rel="stylesheet">
+    <script src="./assets/script/index.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/20608a4ccb.js" crossorigin="anonymous"></script>
+    <title>Shape Factory</title>
 </head>
-<body>
-    
+<body>       
+    <main>
+        <div class="container">
+            <div id="shape-container" class="shape-container"></div>
+            <select id="shape-select">
+                <option value="Select a shape"></option>
+                <option value="circle">Circle</option>
+                <option value="square">Square</option>
+            </select>
+            <select id="color-select">
+                <option value="Select a colour"></option>
+                <option value="blue">Blue</option>
+                <option value="pink">Pink</option>
+                <option value="orange">Orange</option>
+                <option value="green">Green</option>
+            </select>
+            <input type="button" id="create-btn" value="Create"/>
+            <section>
+                <p id="validation"></p>
+            </section>
+        </div>
+    </main> 
+
 </body>
 </html>
