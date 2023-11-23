@@ -33,7 +33,6 @@ function createShape() {
     const shapeDiv = document.createElement('div');
     shapeDiv.classList.add('shape');
     shapeDiv.style.backgroundColor = selectedColor;
-    shapeDiv.textContent = selectedShape.charAt(0).toUpperCase();
 
     if (selectedShape === 'circle') {
         shapeDiv.style.borderRadius = '50%';
