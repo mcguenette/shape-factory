@@ -33,6 +33,7 @@ function createShapeElement(shape, color) {
 
     const shapeElement = document.createElement('div');
     shapeElement.classList.add('shape');
+    shapeElement.setAttribute('data-unit', shapeCounter);
     shapeElement.style.backgroundColor = color;
 
     if (shape === 'circle') {
